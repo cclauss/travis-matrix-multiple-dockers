@@ -5,6 +5,6 @@ matrix:
   include:
     - python: 2.7
       env: DOCKERFILE=Dockerfile_Python27
-    - python: 3.7
-      env: DOCKERFILE=Dockerfile_Python37
+    - python: 3.6
+      env: DOCKERFILE=Dockerfile_Python36
 script: true
