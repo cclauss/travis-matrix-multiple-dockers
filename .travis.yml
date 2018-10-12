@@ -1,0 +1,8 @@
+sudo: required
+services: docker
+matrix:
+  include:
+    - python: 2.7
+      env: DOCKERFILE=Dockerfile_Python27
+    - python: 3.7
+      env: DOCKERFILE=Dockerfile_Python37
