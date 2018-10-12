@@ -1,10 +1,15 @@
 language: python
 sudo: required
 services: docker
-matrix:
-  include:
+env:
+  global:
+    COOL="Totally!"  
+  matrix:
     - python: 2.7
       env: DOCKERFILE=Dockerfile_Python27
     - python: 3.6
       env: DOCKERFILE=Dockerfile_Python36
+
+# # $PY_VER is $TRAVIS_PYTHON_VERSION without the decimal point so "2.7" --> "27", "3.6" --> "36"
+# - PY_VER=$(python -c "import sys ; print(sys.argv[1].replace('.', ''))" $TRAVIS_PYTHON_VERSION)
 script: true
