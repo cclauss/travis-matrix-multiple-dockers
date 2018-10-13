@@ -4,12 +4,21 @@ services: docker
 env:
   global:
     COOL="Totally!"  
-  matrix:
-    - python: 2.7
-      env: DOCKERFILE=Dockerfile_Python27
-    - python: 3.6
-      env: DOCKERFILE=Dockerfile_Python36
+matrix:
+  include:
+  - python: 2.7
+    # env: DOCKERFILE=Dockerfile_Python27
+  - python: 3.6
+    # env: DOCKERFILE=Dockerfile_Python36
+  - python: 3.7
+    # env: DOCKERFILE=Dockerfile_Python37
+    dist: xenial  # required for Python 3.7 (travis-ci/travis-ci#9069)
+    sudo: true    # required for Python 3.7 (travis-ci/travis-ci#9069)
 
-# # $PY_VER is $TRAVIS_PYTHON_VERSION without the decimal point so "2.7" --> "27", "3.6" --> "36"
-# - PY_VER=$(python -c "import sys ; print(sys.argv[1].replace('.', ''))" $TRAVIS_PYTHON_VERSION)
+before_install:
+  # $PY_VER is $TRAVIS_PYTHON_VERSION without the decimal point so "2.7" --> "27", "3.6" --> "36"
+  - PY_VER=$(python -c "import sys ; print(sys.argv[1].replace('.', ''))" $TRAVIS_PYTHON_VERSION)
+  - docker build -t Dockerfile_Python${PY_VER}
+  - docker run Dockerfile_Python${PY_VER}
+
 script: true
