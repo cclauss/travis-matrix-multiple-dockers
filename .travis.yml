@@ -21,7 +21,7 @@ before_install:
   # - docker build -t Dockerfile_Python${PY_VER}
   # - docker run Dockerfile_Python${PY_VER}
   - echo $COOL $DOCKERFILE
-  - docker build -t $DOCKERFILE
+  - docker build -t $DOCKERFILE .
   - docker run $DOCKERFILE
 
 script: true
