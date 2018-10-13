@@ -16,7 +16,7 @@ before_install:
   # $PY_VER is $TRAVIS_PYTHON_VERSION without the decimal point so "2.7" --> "27", "3.6" --> "36"
   - PY_VER=$(python -c "import sys ; print(sys.argv[1].replace('.', ''))" $TRAVIS_PYTHON_VERSION)
   - echo $COOL $PY_VER
-  - docker build -t Dockerfile_Python${PY_VER} .
+  - docker build Dockerfile_Python${PY_VER}
   - docker run Dockerfile_Python${PY_VER}
 
 script: true
